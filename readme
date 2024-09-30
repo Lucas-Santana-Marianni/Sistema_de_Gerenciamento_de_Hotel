@@ -8,3 +8,58 @@ Registro de reservas de hóspedes para diferentes quartos, com controle de check
 Consultas para visualizar informações sobre hóspedes, quartos disponíveis e reservas.
 Capacidade de atualizar informações de hóspedes e quartos.
 Possibilidade de excluir reservas e hóspedes, quando necessário.
+
+# Sistema de Gerenciamento de Reservas de Hotel
+
+## Descrição
+
+Este projeto implementa um sistema de gerenciamento de reservas de hotel utilizando SQL. O sistema permite o cadastro de hóspedes, quartos e reservas, além de fornecer funcionalidades para consultas, atualizações e exclusões.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `HotelManagementSystem` contém as seguintes tabelas:
+
+- **Hospedes**
+  - `ID_hospede`: Identificador único do hóspede.
+  - `nome`: Nome do hóspede.
+  - `telefone`: Telefone do hóspede.
+  - `email`: E-mail do hóspede.
+
+- **Quartos**
+  - `ID_quarto`: Identificador único do quarto.
+  - `numero`: Número do quarto.
+  - `tipo`: Tipo do quarto (Standard, Deluxe, Suite).
+  - `preco`: Preço do quarto.
+
+- **Reservas**
+  - `ID_reserva`: Identificador único da reserva.
+  - `ID_hospede`: Referência ao hóspede que fez a reserva.
+  - `ID_quarto`: Referência ao quarto reservado.
+  - `data_checkin`: Data de check-in.
+  - `data_checkout`: Data de check-out.
+
+## Como Usar
+
+1. **Configuração do Banco de Dados**
+   - Execute os comandos SQL fornecidos para criar o banco de dados e as tabelas.
+   - Insira os dados de exemplo nas tabelas `Hospedes`, `Quartos` e `Reservas`.
+
+2. **Consultas**
+   - Utilize as consultas SQL para obter informações sobre hóspedes, quartos disponíveis e reservas.
+
+3. **Atualizações e Exclusões**
+   - Atualize informações de hóspedes e quartos conforme necessário.
+   - Exclua reservas e hóspedes seguindo as instruções no arquivo SQL.
+
+## Requisitos
+
+- Servidor de banco de dados SQL (MySQL, PostgreSQL, etc.)
+- Ferramenta de gerenciamento de banco de dados (phpMyAdmin, DBeaver, etc.)
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para fazer um fork deste repositório e enviar pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
