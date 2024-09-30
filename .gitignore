@@ -1,0 +1,20 @@
+# Ignorar arquivos temporários do sistema
+*.tmp
+*.log
+
+# Ignorar arquivos de backup
+*.bak
+*.swp
+
+# Ignorar arquivos de configuração de IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar arquivos de banco de dados
+*.sql
+
+# Ignorar arquivos de sistema operacional
+Thumbs.db
+.DS_Store
