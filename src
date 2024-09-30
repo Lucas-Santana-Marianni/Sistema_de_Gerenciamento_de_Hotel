@@ -1,0 +1,68 @@
+drop database HotelManagementSystem;
+create database HotelManagementSystem;
+
+use  HotelManagementSystem;
+
+create table Hospedes (
+ID_hospede int primary key auto_increment,
+nome varchar(100) not null,
+telefone varchar (15),
+email varchar(100) 
+);
+
+create table Quartos (
+ID_quarto int auto_increment primary key,
+numero int not null unique,
+tipo varchar(50),
+preco decimal(10,2) not null
+);
+
+create table Reservas (
+ID_reserva int auto_increment primary key,
+ID_hospede int,
+ID_quarto int,
+data_checkin date not null,
+data_checkout date not null,
+foreign key (ID_hospede) references Hospedes(ID_hospede),
+foreign key (ID_quarto) references Quartos(ID_quarto)
+);
+
+insert into Hospedes (nome, telefone, email)
+values ('Maria Antônia', '1123456478', 'maria.ant@gmail.com'),
+('Angelina de Oliveira', '1732579843', 'angel.oliveira@gmail.com'),
+('João Alves', '9872640915', 'jj.alves@gmail.com'),
+('Mariana Valéria', '1623830476', 'valéria.mari@gmail.com'),
+('Irineu Bonillo','3214367589', 'irineu.boni@gmail.com');
+
+INSERT INTO Quartos (numero, tipo, preco)
+VALUES 
+    (101, 'Standard', 150.00),
+    (102, 'Deluxe', 200.00),
+    (103, 'Suite', 300.00);
+
+INSERT INTO Reservas (ID_hospede, ID_quarto, data_checkin, data_checkout)
+VALUES 
+    (1, 1, '2024-09-05', '2024-09-10'),  -- O ID_quarto "1" corresponde ao quarto válido
+    (2, 2, '2024-09-07', '2024-09-10'),  -- O ID_quarto "2" corresponde ao quarto válido
+    (3, 3, '2024-09-10', '2024-09-12');  -- O ID_quarto "3" corresponde ao quarto válido
+
+select h.nome as Hóspede, q.numero as Quarto, q.tipo as Tipo, q.preco as Preço, r.data_checkin as Checkin, r.data_checkout as Checkout
+from Reservas r
+join Hospedes h on r.ID_hospede= h.ID_hospede
+join Quartos q on r.ID_quarto= q.ID_quarto;
+
+select q.numero as Quarto, q.tipo as Tipo, q.preco as Preço 
+from Quartos q 
+left join Reservas r on q.ID_quarto= r.ID_quarto and (r.data_checkin <= '2024-09-07' and r.data_checkout >= '2024-09-10')
+
+where r.ID_quarto is null;
+
+update Hospedes set telefone = '1122334455', email = 'angel.oliveira@newgmail.com' where ID_hospede = 2;
+
+update Quartos set preco = 120.00 where ID_quarto = 101; 
+
+-- Primeiro, exclua as reservas do hóspede com ID_hospede = 3
+DELETE FROM Reservas WHERE ID_hospede = 3;
+
+-- Depois, agora que as reservas foram removidas, exclua o hóspede
+DELETE FROM Hospedes WHERE ID_hospede = 3;
